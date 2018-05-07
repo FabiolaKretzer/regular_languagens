@@ -12,7 +12,7 @@ public class RG_Algorithms{
    * @return finite automaton equivalent
 */
 	public FiniteAutomaton onFiniteautomaton(RegularGrammar g) {
-
+		
 	}
 
 

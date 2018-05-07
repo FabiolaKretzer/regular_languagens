@@ -16,7 +16,7 @@ public class FA_algorithms {
 		for (int i = 0; i < length(f.transition); i++) {
 
 		}
-
+		
 		return;
 	}
 
@@ -24,7 +24,14 @@ public class FA_algorithms {
    * @return Is deterministic?
 */
 	public boolean isDeterministic(FiniteAutomaton f) {
-		return false;
+		for(State s : fa.states) {
+			for(char letter : fa.alphabeth) {
+				if(length(fa.transitions(s, letter, _)) > 1) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 /**
@@ -33,6 +40,8 @@ public class FA_algorithms {
 	public FiniteAutomaton determinize(FiniteAutomaton f) {
 		if (isDetreministic(f))
 			return;
+
+		
 
 	}
 
@@ -158,5 +167,36 @@ public class FA_algorithms {
 			automaton.transitions.add(ta);
 		}
 		return automaton;
+	}
+
+/**
+   * @return Finite Automaton to recognize sentence?
+*/
+	public boolean recognize(FiniteAutomaton fa, String sentence) {
+		boolean r = false;
+		char [] letter = sentence.toCharArray();
+		current_state = fa.initial;
+		for(char l : letter) {
+			for(Transition (qa, symbol, qb) : fa.transitions){
+				if(qa == current_state && symbol == l) {
+					current_state = qb;
+				}
+			}
+		}
+		if(current_state.getIsFinal()) {
+			r = true;
+		}
+		return r;
+	}
+
+/**
+   * @return Finite Automaton to recognize sentence in size?
+*/
+	public int enumeration(FiniteAutomaton fa, String sentence) {
+		int size = null;
+		if (recognize(fa, sentence)){
+			char [] letter = sentence.toCharArray();
+			letter.length();
+		}
 	}
 }
