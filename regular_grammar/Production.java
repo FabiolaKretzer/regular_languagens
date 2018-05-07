@@ -9,5 +9,5 @@ public class Production{
    * Constructor.
 */
 	TransitionMap(){
-		this.transition = new HashMap<char, String>();
+		this.production = new HashMap<char, String>();
 	}

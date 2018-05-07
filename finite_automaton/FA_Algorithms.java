@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import Finiteautomaton.java
 
 public class FA_algorithms {
@@ -11,13 +15,18 @@ public class FA_algorithms {
    * Convert the finite automaton into a grammar
    * @return regular grammar equivalent
 */
-	public Grammar onRegularGrammar(FiniteAutomaton f) {
-		initialSymbol = f.initial;
-		for (int i = 0; i < length(f.transition); i++) {
-
+	public RegularGrammar onRegularGrammar(FiniteAutomaton f) {
+		RegularGrammar grammar = new RegularGrammar();
+		grammar.initialSymbol = f.initial;		
+		for (Transition (qa, symbol, qb) : f.transitions) {
+			t = new Production(qa, symbol + qb);
+			grammar.production.add(t);
+			if(qb.getIsFinal()) {
+				t = new Transitions(qa, symbol);
+				grammar.production.add(t);
+			}
 		}
-		
-		return;
+		return grammar;
 	}
 
 /**
@@ -40,8 +49,19 @@ public class FA_algorithms {
 	public FiniteAutomaton determinize(FiniteAutomaton f) {
 		if (isDetreministic(f))
 			return;
-
-		
+		ArrayList<State> det_state = new ArrayList();
+		ArrayList<Transition> help = new ArrayList();
+		while (length(state) != length(f.transition.key())){
+			for(State s : f.states) [
+				det_state.add(s);
+				for(Transition (qa, symbol, qb) : f.transitions) {
+					if (qa == s) {
+						help.add((qa, symbol, qb));
+					}
+				}
+			}
+			
+		}
 
 	}
 
@@ -60,7 +80,7 @@ public class FA_algorithms {
    * @return finite automaton without unreachable states
 */
 	public FiniteAutomaton remove_unreachable(FiniteAutomaton f) {
-
+		
 	}
 
 /**
@@ -104,14 +124,14 @@ public class FA_algorithms {
    * Used in intersection() and difference()
    * @return Finite Automaton resulting from the complement
 */
-	public FiniteAutomaton complement(FiniteAutomaton fa) {
+	public FiniteAutomaton complement(FiniteAutomaton f) {
 		FiniteAutomaton automaton == new FiniteAutomaton(); 
-		automaton.initial = fa.initial;
+		automaton.initial = f.initial;
 		automaton.name = "";
-		automaton.alphabet.addAll(fa.alphabet);
-		automaton.transitions.addAll(fa.transitions);
+		automaton.alphabet.addAll(f.alphabet);
+		automaton.transitions.addAll(f.transitions);
 
-		for (State s : fa.states) {
+		for (State s : f.states) {
 			automaton.states.add(s);
 			if(getIsFinal()) {
 				s.setIsFinal(!getIsFinal());
@@ -142,23 +162,23 @@ public class FA_algorithms {
 /**
    * @return Finite Automaton resulting from the reverse
 */
-	public FiniteAutomaton reverse(FiniteAutomaton fa) {
+	public FiniteAutomaton reverse(FiniteAutomaton f) {
 		FiniteAutomaton automaton = new FiniteAutomaton();
 		automaton.initial = new State("new", true);
 		automaton.states.add(automaton.initial);
-		automaton.alphabet.addAll(fa.alphabet);
-		for(State f : fa.finals) {
-			if (fa.initial.getIsFinal()) { 	
-				f.isFinal = true;
+		automaton.alphabet.addAll(f.alphabet);
+		for(State end : f.finals) {
+			if (f.initial.getIsFinal()) { 	
+				end.isFinal = true;
 			} else {
-				f.isFinal = false;
+				end.isFinal = false;
 			}
-			ta = new Transition(initial, &, fa.f);
+			ta = new Transition(initial, &, f.end);
 			automaton.transitions.add(ta);
-			automaton.states.add(f);
+			automaton.states.add(fend);
 		}
 		for(State s : fa.states) {
-			if (!automaton.states.contains(f)) {
+			if (!automaton.states.contains(s)) {
 				automaton.satates.add(s);
 			}
 		}
@@ -172,10 +192,10 @@ public class FA_algorithms {
 /**
    * @return Finite Automaton to recognize sentence?
 */
-	public boolean recognize(FiniteAutomaton fa, String sentence) {
+	public boolean recognize(FiniteAutomaton f, String sentence) {
 		boolean r = false;
 		char [] letter = sentence.toCharArray();
-		current_state = fa.initial;
+		current_state = f.initial;
 		for(char l : letter) {
 			for(Transition (qa, symbol, qb) : fa.transitions){
 				if(qa == current_state && symbol == l) {
@@ -194,7 +214,7 @@ public class FA_algorithms {
 */
 	public int enumeration(FiniteAutomaton fa, String sentence) {
 		int size = null;
-		if (recognize(fa, sentence)){
+		if (recognize(f, sentence)){
 			char [] letter = sentence.toCharArray();
 			letter.length();
 		}
