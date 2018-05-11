@@ -87,8 +87,9 @@ public class FA_algorithms {
 /**
    * @return Finite Automaton resulting from the reverse
 */
-	public void reverse(FiniteAutomaton f) {
-            f.setReverse(new FiniteAutomaton()); 
+	public FiniteAutomaton reverse(FiniteAutomaton f) {
+            f.setReverse(new FiniteAutomaton());
+            return new FiniteAutomaton();
 	}
 
 /**
