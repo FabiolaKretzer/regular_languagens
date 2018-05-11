@@ -1,22 +1,45 @@
+package finite_automaton;
 import java.util.ArrayList;
 
 public class FiniteAutomaton{
 
+        FiniteAutomaton deterministic;
+        FiniteAutomaton minimized;
+        FiniteAutomaton complement;
+        FiniteAutomaton reverse;
+        
 	protected ArrayList<State> states;
-	protected ArrayList<char> alphabet;
-	protected ArrayList<Transition> transitions;
+	protected ArrayList<Character> alphabet;
 	protected State initial;
-	protected ArrayList<State> last;
 	public String name = "";
 
 /**
    * Constructor.
 */
-	FiniteAutomaton(ArrayList<State> states, ArrayList<char> alphabet, ArrayList<Transition> transitions, State initial, ArrayList<State> last) {
+        public FiniteAutomaton() {
+            
+        }
+        
+	public FiniteAutomaton(ArrayList<State> states, ArrayList<Character> alphabet, State initial) {
 		this.states = states;
 		this.alphabet = alphabet;
-		this.transitions = transitions
 		this.initial = initial;
-		this.last = last;
 	}
+        
+        public void setDeterministic (FiniteAutomaton f) {
+            this.deterministic = f;
+        }
+        
+        public void setMinimized (FiniteAutomaton f) {
+            this.minimized = f;
+        }
+        
+        public void setComplement (FiniteAutomaton f) {
+            this.complement = f;
+        }
+        
+        public void setReverse (FiniteAutomaton f) {
+            this.reverse = f;
+        }
+       
 }
