@@ -372,7 +372,79 @@ public class FA_algorithmsTest {
      */
     @Test
     public void testUnion() {
+        /**
+        * Language not exist (00)
+        */
+        State q0 = new State("q0", true);
+        State q1 = new State("q1", true);
+       
+        State initialA = q0;
         
+        ArrayList<State> stateA = new ArrayList<>();
+        stateA.add(q0);
+        stateA.add(q1);
+       
+        q0.setTransitions('0', q1);
+        q0.setTransitions('1', q0);
+        q1.setTransitions('1', q0);
+        
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('0');
+        alphabet.add('1');
+       
+        FiniteAutomaton automatonA = new FiniteAutomaton(stateA, alphabet, initialA);
+        
+        /**
+        * Language not exist (11)
+        */
+        State q2 = new State("q2", true);
+        State q3 = new State("q3", true);
+       
+        State initialB = q2;
+       
+        ArrayList<State> stateB = new ArrayList<>();
+        stateA.add(q2);
+        stateA.add(q3);
+       
+        q0.setTransitions('0', q0);
+        q0.setTransitions('1', q1);
+        q1.setTransitions('0', q0);
+       
+        FiniteAutomaton automatonB = new FiniteAutomaton(stateB, alphabet, initialB);
+       
+        FA_algorithms f = new FA_algorithms();
+        
+        //Resulting union
+        
+        State S = new State("S", true);
+        State A = new State("A", true);
+        State B = new State("B", true);
+        State C = new State("C", true);
+        State D = new State("D", true);
+        
+        State init = S;
+        
+        ArrayList<State> st = new ArrayList<>();
+        st.add(S);
+        st.add(A);
+        st.add(B);
+        st.add(C);
+        st.add(D);
+        
+        S.setTransitions('0', B);
+        S.setTransitions('0', C);
+        S.setTransitions('1', A);
+        S.setTransitions('1', D);
+        A.setTransitions('0', B);
+        A.setTransitions('1', A);
+        B.setTransitions('1', A);
+        C.setTransitions('0', C);
+        C.setTransitions('1', D);
+        D.setTransitions('0', C);
+        FiniteAutomaton res = new FiniteAutomaton(st, alphabet, init);
+        
+        
+        assertEquals(res, f.union(automatonA, automatonB))
     }
 
     /**
@@ -380,24 +452,58 @@ public class FA_algorithmsTest {
      */
     @Test
     public void testComplement() {
+    /**
+     * Language not exist (00)
+     */
+        State q0 = new State("q0", true);
+        State q1 = new State("q1", true);
+       
+        State initialA = q0;
         
+        ArrayList<State> stateA = new ArrayList<>();
+        stateA.add(q0);
+        stateA.add(q1);
+       
+        q0.setTransitions('0', q1);
+        q0.setTransitions('1', q0);
+        q1.setTransitions('1', q0);
+        
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('0');
+        alphabet.add('1');
+       
+        FiniteAutomaton automaton = new FiniteAutomaton(stateA, alphabet, initialA);
+        
+        FA_algorithms f = new FA_algorithms();
+      
+        assertEquals(false, f.isComplete(automaton));
+	f.complete(automaton);
+        assertEquals(true, f.isComplete(automaton));
+        
+        State A = new State("A", false);
+        State B = new State("B", false);
+        State C = new State("C", true);
+        
+        ArrayList<State> st = new ArrayList<>();
+        st.add(A);
+        st.add(B);
+        st.add(C);
+        
+        State init = A;
+        
+        A.setTransitions('0', B);
+        A.setTransitions('1', A);
+        B.setTransitions('0', C);
+        B.setTransitions('1', A);
+        C.setTransitions('0', C);
+        C.setTransitions('1', C);
+        
+        FiniteAutomaton comp = new FiniteAutomaton(st, alphabet, init);
+       
+        assertEquals(comp, f.complement(automaton));
+       
     }
 
-    /**
-     * Test of intersection method, of class FA_algorithms.
-     */
-    @Test
-    public void testIntersection() {
-        
-    }
-
-    /**
-     * Test of difference method, of class FA_algorithms.
-     */
-    @Test
-    public void testDifference() {
-        
-    }
 
     /**
      * Test of reverse method, of class FA_algorithms.

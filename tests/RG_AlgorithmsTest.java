@@ -16,28 +16,14 @@ public class RG_AlgorithmsTest {
     public RG_AlgorithmsTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
 
     /**
      * Test of union method, of class RG_Algorithms.
      */
     @Test
     public void testUnion() {
-        /**System.out.println("union");
-        RegularGrammar ga = null;
-        RegularGrammar gb = null;
-        RG_Algorithms instance = new RG_Algorithms();
-        RegularGrammar expResult = null;
-        RegularGrammar result = instance.union(ga, gb);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        
+        
     }
 
     /**
@@ -45,15 +31,7 @@ public class RG_AlgorithmsTest {
      */
     @Test
     public void testConcatenation() {
-        /**System.out.println("concatenation");
-        RegularGrammar ga = null;
-        RegularGrammar gb = null;
-        RG_Algorithms instance = new RG_Algorithms();
-        RegularGrammar expResult = null;
-        RegularGrammar result = instance.concatenation(ga, gb);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        
     }
 
     /**
@@ -61,14 +39,7 @@ public class RG_AlgorithmsTest {
      */
     @Test
     public void testClosure() {
-        /**System.out.println("closure");
-        RegularGrammar ga = null;
-        RG_Algorithms instance = new RG_Algorithms();
-        RegularGrammar expResult = null;
-        RegularGrammar result = instance.closure(ga);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        
     }
     
 }
