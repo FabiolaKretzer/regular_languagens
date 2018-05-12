@@ -5,7 +5,10 @@ package tests;
 
 import finite_automaton.FA_algorithms;
 import finite_automaton.FiniteAutomaton;
+import finite_automaton.State;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,44 +20,168 @@ public class FA_algorithmsTest {
     public FA_algorithmsTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     /**
      * Test of isDeterministic method, of class FA_algorithms.
      */
     @Test
     public void testIsDeterministic() {
-        System.out.println("isDeterministic");
-        FiniteAutomaton f = null;
-        FA_algorithms instance = new FA_algorithms();
-        boolean expResult = false;
-        boolean result = instance.isDeterministic(f);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        /**
+        * Language not exist (00) and not exist (11)
+        */
+        Map<Character, ArrayList<State>> transitionsq0 = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsq1 = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsq2 = new HashMap<>();
+        
+        State q0 = new State("q0", true);
+        State q1 = new State("q1", true);
+        State q2 = new State("q2", true);
+        
+        State inicialA = q0;
+        
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(q0);
+        statesA.add(q1);
+        statesA.add(q2);
+        
+        //transitionsq0.add('0', q1);
+        //transitionsq0.add('1', q2);
+        //transitionsq1.add('1', q2);
+        //transitionsq2.add('0', q1);
+        
+        FiniteAutomaton automaton = new FiniteAutomaton();   
+               
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(false, f.isDeterministic(automaton)); 
     }
-
+    
+    /**
+     * Test of isDeterministic method, of class FA_algorithms.
+     */
+   @Test
+    public void testIsDeterministic2() {
+        /**
+        * Language Question 2 - list 0.4
+        */
+        Map<Character, ArrayList<State>> transitionsS = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsA = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsB = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsC = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsD = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsF = new HashMap<>();
+        
+        State S = new State("S", true);
+        State A = new State("A", false);
+        State B = new State("B", false);
+        State C = new State("C", false);
+        State D = new State("D", false);
+        State F = new State("F", true);
+        
+        State inicialA = S;
+        
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(S);
+        statesA.add(A);
+        statesA.add(B);
+        statesA.add(C);
+        statesA.add(D);
+        statesA.add(F);
+        
+        //transitionsS.add('0', A);
+        //transitionsS.add('0', D);
+        //transitionsS.add('1', F);
+        //transitionsA.add('0', A);
+        //transitionsA.add('0', B);
+        //transitionsA.add('1', C);
+        //transitionsA.add('1', E);
+        //transitionsB.add('0', B);
+        //transitionsC.add('0', A);
+        //transitionsC.add('0', B);
+        //transitionsD.add('0', B);
+        //transitionsD.add('0', D);
+        //transitionsD.add('1', C);
+        //transitionsE.add('0', E);
+        //transitionsE.add('1', E);
+            
+        FiniteAutomaton automaton = new FiniteAutomaton();   
+               
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(true, f.isDeterministic(automaton)); 
+        f.determinize(automaton);
+        assertEquals(false, f.isDeterministic(automaton)); 
+       
+    }
     /**
      * Test of isComplete method, of class FA_algorithms.
      */
     @Test
     public void testIsComplete() {
-        System.out.println("isComplete");
-        FiniteAutomaton f = null;
-        FA_algorithms instance = new FA_algorithms();
-        boolean expResult = false;
-        boolean result = instance.isComplete(f);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        /**
+        * Language not exist (00) and not exist (11)
+        */
+        
+        Map<Character, ArrayList<State>> transitionsq0 = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsq1 = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsq2 = new HashMap<>();
+        
+        State q0 = new State("q0", true);
+        State q1 = new State("q1", true);
+        State q2 = new State("q2", true);
+        
+        State inicialA = q0;
+        
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(q0);
+        statesA.add(q1);
+        statesA.add(q2);
+        
+        //transitionsq0.add('0', q1);
+        //transitionsq0.add('1', q2);
+        //transitionsq1.add('1', q2);
+        //transitionsq2.add('0', q1);
+        
+        FiniteAutomaton automaton = new FiniteAutomaton();   
+               
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(false, f.isComplete(automaton));
+	f.complete(automaton);
+        assertEquals(true, f.isComplete(automaton));
     }
-
+    
+    /**
+     * Test of isComplete method, of class FA_algorithms.
+     */
+    @Test
+    public void testIsComplete2() {
+        /**
+        * Language |x| is odd
+        */
+        
+        Map<Character, ArrayList<State>> transitionsq0 = new HashMap<>();
+        Map<Character, ArrayList<State>> transitionsq1 = new HashMap<>();
+        
+        State q0 = new State("q0", false);
+        State q1 = new State("q1", true);
+        
+        State inicialA = q0;
+        
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(q0);
+        statesA.add(q1);
+        
+        //transitionsq0.add('a', q1);
+        //transitionsq0.add('b', q1);
+        //transitionsq1.add('a', q0);
+        //transitionsq1.add('b', q0);
+        
+        FiniteAutomaton automaton = new FiniteAutomaton();   
+               
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(true, f.isComplete(automaton));
+    }
     /**
      * Test of determinize method, of class FA_algorithms.
      */
