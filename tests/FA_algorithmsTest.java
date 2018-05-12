@@ -582,7 +582,6 @@ public class FA_algorithmsTest {
         
         assertEquals(true, f.recognize(automaton, "01010"));
         assertEquals(true, f.recognize(automaton, "01010"));
-
     }
 
     /**

@@ -22,7 +22,7 @@ public class RegularGrammar{
             productions.put(c, list);
         }
         
-        protected void setProductions (char c, String prod) {
+        public void setProductions (char c, String prod) {
             if(productions.containsKey(c)) {
                 ArrayList<String> list = productions.get(c);
                 list.add(prod);

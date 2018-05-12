@@ -13,10 +13,22 @@ public class State {
 /**
    * Constructor.
 */
-	State(String name, boolean isFinal) {
+	public State(String name, boolean isFinal) {
                 this.transition = new HashMap<>();
 		this.name = name;
                 this.isFinal = isFinal;
+        }
+        
+        public void setTransitions (char c, State s) {
+            if(transition.containsKey(c)) {
+                ArrayList<State> list = transition.get(c);
+                list.add(s);
+                transition.put(c, list);
+            } else {
+                ArrayList<State> list = new ArrayList<State>();
+                list.add(s);
+                setTransitions(c, s);
+            }
         }
         
         public void setNewTransition(char c, ArrayList<State> list) {

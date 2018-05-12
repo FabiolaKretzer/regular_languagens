@@ -43,8 +43,9 @@ public class FA_algorithms {
 /**
    * @return finite automaton minimum
 */
-	public void minimize(FiniteAutomaton f) {
-            f.setMinimized (new FiniteAutomaton());
+	public FiniteAutomaton minimize(FiniteAutomaton f) {
+            //f.setMinimized (new FiniteAutomaton());
+            return f;
 	}
 
 /**
