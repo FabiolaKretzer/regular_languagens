@@ -444,7 +444,7 @@ public class FA_algorithmsTest {
         FiniteAutomaton res = new FiniteAutomaton(st, alphabet, init);
         
         
-        assertEquals(res, f.union(automatonA, automatonB))
+        assertEquals(res, f.union(automatonA, automatonB));
     }
 
     /**
@@ -510,6 +510,40 @@ public class FA_algorithmsTest {
      */
     @Test
     public void testReverse() {
+        State q0 = new State("q0", false);
+        State q1 = new State("q1", false);
+        State q2 = new State("q2", true);
+        State q3 = new State("q3", false);
+        State q4 = new State("q4", true);
+        
+        ArrayList<State> state = new ArrayList();
+        state.add(q0);
+        state.add(q1);
+        state.add(q2);
+        state.add(q3);
+        state.add(q4);
+        
+        State initial = q0;
+        
+        q0.setTransitions('a', q1);
+        q1.setTransitions('b', q2);
+        q0.setTransitions('c', q3);
+        q3.setTransitions('d', q4);
+        
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('a');
+        alphabet.add('b');
+        alphabet.add('c');
+        alphabet.add('d');
+        
+        FiniteAutomaton automaton = new FiniteAutomaton(state, alphabet, initial);
+        
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(true, f.recognize(f.reverse(automaton), "ba"));
+        assertEquals(true, f.recognize(f.reverse(automaton), "dc"));
+        assertEquals(false, f.recognize(f.reverse(automaton), "ab"));
+        assertEquals(false, f.recognize(f.reverse(automaton), "cd"));
 
     }
 
@@ -518,7 +552,37 @@ public class FA_algorithmsTest {
      */
     @Test
     public void testRecognize() {
+                /**
+        * Language not exist (00) and not exist (11)
+        */
         
+        State q0 = new State("q0", true);
+        State q1 = new State("q1", true);
+        State q2 = new State("q2", true);
+        
+        State initialA = q0;
+        
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(q0);
+        statesA.add(q1);
+        statesA.add(q2);
+        
+        q0.setTransitions('0', q1);
+        q0.setTransitions('1', q2);
+        q1.setTransitions('1', q2);
+        q2.setTransitions('0', q1);
+        
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('0');
+        alphabet.add('1');
+               
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA); 
+        
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(true, f.recognize(automaton, "01010"));
+        assertEquals(true, f.recognize(automaton, "01010"));
+
     }
 
     /**
