@@ -34,6 +34,17 @@ public class FA_algorithms {
    * @return Is complete?
 */
 	public boolean isComplete(FiniteAutomaton f) {
+            for(Character c: f.alphabet){
+                if(!f.initial.transition.containsKey(c) || f.initial.getListStates(c).size() == 0)
+                    return false;
+            }
+            
+            for(State s : f.states) {
+                for(Character c: f.alphabet){
+                    if(!s.transition.containsKey(c) || s.getListStates(c).size() == 0)
+                        return false;
+                }
+            }
             return true;
 	}
 
