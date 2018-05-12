@@ -7,6 +7,7 @@ public class FiniteAutomaton{
         FiniteAutomaton minimized;
         FiniteAutomaton complement;
         FiniteAutomaton reverse;
+        FiniteAutomaton complete;
         
 	protected ArrayList<State> states;
 	protected ArrayList<Character> alphabet;
@@ -40,6 +41,10 @@ public class FiniteAutomaton{
         
         public void setReverse (FiniteAutomaton f) {
             this.reverse = f;
+        }
+        
+        public void setComplete (FiniteAutomaton f) {
+            this.complete = f;
         }
        
 }

@@ -20,10 +20,24 @@ public class FA_algorithms {
 	}
 
 /**
+   * @return Is complete?
+*/
+	public boolean isComplete(FiniteAutomaton f) {
+            return true;
+	}
+
+/**
    * @return finite automaton deterministic
 */
 	public void determinize(FiniteAutomaton f) {
             f.setDeterministic(new FiniteAutomaton());
+	}
+        
+/**
+   * @return finite automaton complete
+*/
+	public void complete(FiniteAutomaton f) {
+            f.setComplete(new FiniteAutomaton());
 	}
 
 /**
