@@ -16,6 +16,17 @@ public class FA_algorithms {
    * @return Is deterministic?
 */
 	public boolean isDeterministic(FiniteAutomaton f) {
+            for(Character c: f.alphabet){
+                if(f.initial.getListStates(c).size() > 1)
+                    return false;
+            }
+            
+            for(State s : f.states) {
+                for(Character c: f.alphabet){
+                    if(s.getListStates(c).size() > 1)
+                        return false;
+                }
+            }
             return true;
 	}
 

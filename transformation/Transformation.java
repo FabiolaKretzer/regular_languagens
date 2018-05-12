@@ -1,3 +1,4 @@
+package transformation;
 import finite_automaton.*;
 import regular_expression.*;
 import regular_grammar.*;
@@ -12,7 +13,7 @@ public class Transformation {
     protected ArrayList<RegularExpression> listRE;
     protected ArrayList<RegularGrammar> listRG;
     FA_algorithms alg;
-    Transformation(){
+    public Transformation(){
         this.alg = new FA_algorithms();
     }
     
