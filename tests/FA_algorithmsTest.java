@@ -28,27 +28,28 @@ public class FA_algorithmsTest {
         /**
         * Language not exist (00) and not exist (11)
         */
-        Map<Character, ArrayList<State>> transitionsq0 = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsq1 = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsq2 = new HashMap<>();
         
         State q0 = new State("q0", true);
         State q1 = new State("q1", true);
         State q2 = new State("q2", true);
         
-        State inicialA = q0;
+        State initialA = q0;
         
         ArrayList<State> statesA = new ArrayList<>();
         statesA.add(q0);
         statesA.add(q1);
         statesA.add(q2);
         
-        //transitionsq0.add('0', q1);
-        //transitionsq0.add('1', q2);
-        //transitionsq1.add('1', q2);
-        //transitionsq2.add('0', q1);
+        q0.setTransitions('0', q1);
+        q0.setTransitions('1', q2);
+        q1.setTransitions('1', q2);
+        q2.setTransitions('0', q1);
         
-        FiniteAutomaton automaton = new FiniteAutomaton();   
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('0');
+        alphabet.add('1');
+    
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA );   
                
         FA_algorithms f = new FA_algorithms();
         
@@ -58,17 +59,11 @@ public class FA_algorithmsTest {
     /**
      * Test of isDeterministic method, of class FA_algorithms.
      */
-   @Test
+  @Test
     public void testIsDeterministic2() {
         /**
         * Language Question 2 - list 0.4
         */
-        Map<Character, ArrayList<State>> transitionsS = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsA = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsB = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsC = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsD = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsF = new HashMap<>();
         
         State S = new State("S", true);
         State A = new State("A", false);
@@ -77,8 +72,8 @@ public class FA_algorithmsTest {
         State D = new State("D", false);
         State F = new State("F", true);
         
-        State inicialA = S;
-        
+        State initialA = S;
+       
         ArrayList<State> statesA = new ArrayList<>();
         statesA.add(S);
         statesA.add(A);
@@ -87,23 +82,28 @@ public class FA_algorithmsTest {
         statesA.add(D);
         statesA.add(F);
         
-        //transitionsS.add('0', A);
-        //transitionsS.add('0', D);
-        //transitionsS.add('1', F);
-        //transitionsA.add('0', A);
-        //transitionsA.add('0', B);
-        //transitionsA.add('1', C);
-        //transitionsA.add('1', E);
-        //transitionsB.add('0', B);
-        //transitionsC.add('0', A);
-        //transitionsC.add('0', B);
-        //transitionsD.add('0', B);
-        //transitionsD.add('0', D);
-        //transitionsD.add('1', C);
-        //transitionsE.add('0', E);
-        //transitionsE.add('1', E);
-            
-        FiniteAutomaton automaton = new FiniteAutomaton();   
+        S.setTransitions('0', A);
+        S.setTransitions('0', D);
+        S.setTransitions('1', F);
+        A.setTransitions('0', A);
+        A.setTransitions('0', B);
+        A.setTransitions('1', C);
+        A.setTransitions('1', F);
+        B.setTransitions('0', B);
+        C.setTransitions('0', A);
+        C.setTransitions('0', B);
+        D.setTransitions('0', B);
+        D.setTransitions('0', D);
+        D.setTransitions('1', C);
+        D.setTransitions('0', B);
+        F.setTransitions('0', F);
+        F.setTransitions('1', F);
+
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('0');
+        alphabet.add('1');
+
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA);   
                
         FA_algorithms f = new FA_algorithms();
         
@@ -121,27 +121,27 @@ public class FA_algorithmsTest {
         * Language not exist (00) and not exist (11)
         */
         
-        Map<Character, ArrayList<State>> transitionsq0 = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsq1 = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsq2 = new HashMap<>();
-        
         State q0 = new State("q0", true);
         State q1 = new State("q1", true);
         State q2 = new State("q2", true);
         
-        State inicialA = q0;
+        State initialA = q0;
         
         ArrayList<State> statesA = new ArrayList<>();
         statesA.add(q0);
         statesA.add(q1);
         statesA.add(q2);
         
-        //transitionsq0.add('0', q1);
-        //transitionsq0.add('1', q2);
-        //transitionsq1.add('1', q2);
-        //transitionsq2.add('0', q1);
+        q0.setTransitions('0', q1);
+        q0.setTransitions('1', q2);
+        q1.setTransitions('1', q2);
+        q2.setTransitions('0', q1);
         
-        FiniteAutomaton automaton = new FiniteAutomaton();   
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('0');
+        alphabet.add('1');
+               
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA ); 
                
         FA_algorithms f = new FA_algorithms();
         
@@ -159,24 +159,25 @@ public class FA_algorithmsTest {
         * Language |x| is odd
         */
         
-        Map<Character, ArrayList<State>> transitionsq0 = new HashMap<>();
-        Map<Character, ArrayList<State>> transitionsq1 = new HashMap<>();
-        
         State q0 = new State("q0", false);
         State q1 = new State("q1", true);
         
-        State inicialA = q0;
+        State initialA = q0;
         
         ArrayList<State> statesA = new ArrayList<>();
         statesA.add(q0);
         statesA.add(q1);
         
-        //transitionsq0.add('a', q1);
-        //transitionsq0.add('b', q1);
-        //transitionsq1.add('a', q0);
-        //transitionsq1.add('b', q0);
+        q0.setTransitions('a', q1);
+        q0.setTransitions('b', q1);
+        q1.setTransitions('a', q0);
+        q1.setTransitions('b', q0);
         
-        FiniteAutomaton automaton = new FiniteAutomaton();   
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('a');
+        alphabet.add('b');
+               
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA );   
                
         FA_algorithms f = new FA_algorithms();
         
