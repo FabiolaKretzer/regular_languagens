@@ -188,25 +188,108 @@ public class FA_algorithmsTest {
      */
     @Test
     public void testDeterminize() {
-        System.out.println("determinize");
-        FiniteAutomaton f = null;
-        FA_algorithms instance = new FA_algorithms();
-        instance.determinize(f);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        /**
+        * Exercise 1 - Slides
+        */
+        State S = new State("S", true);
+        State A = new State("A", false);
+        State B = new State("B", false);
+        State C = new State("C", false);
+        State F = new State("F", true);
+        
+        State initialA = S;
+      
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(S);
+        statesA.add(A);
+        statesA.add(B);
+        statesA.add(C);
+        statesA.add(F);
+        
+        S.setTransitions('a', A);
+        S.setTransitions('b', B);
+        S.setTransitions('b', F);
+        S.setTransitions('c', S);
+        S.setTransitions('c', F);
+        A.setTransitions('a', S);
+        A.setTransitions('a', F);
+        A.setTransitions('b', C);
+        A.setTransitions('c', A);
+        B.setTransitions('a', A);
+        B.setTransitions('c', B);
+        B.setTransitions('c', S);
+        B.setTransitions('c', F);
+        C.setTransitions('a', S);
+        C.setTransitions('a', F);
+        C.setTransitions('c', A);
+        C.setTransitions('c', C);
+        
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('a');
+        alphabet.add('b');
+        alphabet.add('c');
+              
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA ); 
+               
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(false, f.isDeterministic(automaton));
+	f.determinize(automaton);
+        assertEquals(true, f.isDeterministic(automaton));
     }
-
     /**
      * Test of complete method, of class FA_algorithms.
      */
     @Test
     public void testComplete() {
-        System.out.println("complete");
-        FiniteAutomaton f = null;
-        FA_algorithms instance = new FA_algorithms();
-        instance.complete(f);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        /**
+        * Exercise 1 - Slides
+        */
+        State S = new State("S", true);
+        State A = new State("A", false);
+        State B = new State("B", false);
+        State C = new State("C", false);
+        State F = new State("F", true);
+        
+        State initialA = S;
+      
+        ArrayList<State> statesA = new ArrayList<>();
+        statesA.add(S);
+        statesA.add(A);
+        statesA.add(B);
+        statesA.add(C);
+        statesA.add(F);
+        
+        S.setTransitions('a', A);
+        S.setTransitions('b', B);
+        S.setTransitions('b', F);
+        S.setTransitions('c', S);
+        S.setTransitions('c', F);
+        A.setTransitions('a', S);
+        A.setTransitions('a', F);
+        A.setTransitions('b', C);
+        A.setTransitions('c', A);
+        B.setTransitions('a', A);
+        B.setTransitions('c', B);
+        B.setTransitions('c', S);
+        B.setTransitions('c', F);
+        C.setTransitions('a', S);
+        C.setTransitions('a', F);
+        C.setTransitions('c', A);
+        C.setTransitions('c', C);
+        
+        ArrayList<Character> alphabet = new ArrayList<>();
+        alphabet.add('a');
+        alphabet.add('b');
+        alphabet.add('c');
+              
+        FiniteAutomaton automaton = new FiniteAutomaton(statesA, alphabet, initialA ); 
+               
+        FA_algorithms f = new FA_algorithms();
+        
+        assertEquals(false, f.isComplete(automaton));
+	f.complete(automaton);
+        assertEquals(true, f.isComplete(automaton));
     }
 
     /**
